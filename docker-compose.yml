@@ -1,0 +1,34 @@
+todomvc:
+  image: nginx
+  volumes:
+    - ./todomvc:/usr/share/nginx/html
+  ports:
+    - 80:80
+seleniumhub:
+  image: selenium/hub
+  ports:
+    - 4444:4444
+
+firefoxnode:
+  image: selenium/node-firefox
+  ports:
+    - 5900
+  links:
+    - seleniumhub:hub
+
+chromenode:
+  image: selenium/node-chrome
+  ports:
+    - 5900
+  links:
+    - seleniumhub:hub
+
+nightwatch:
+  build: ./tests
+  volumes:
+    - ./tests/reports:/usr/src/tests/reports
+    - ./tests/features:/usr/src/tests/features
+    - ./tests/page-objects:/usr/src/tests/page-objects
+  links:
+    - todomvc
+    - seleniumhub
