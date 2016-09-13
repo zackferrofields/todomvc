@@ -1,7 +1,6 @@
 services:
   - docker
 before_install:
-  - cd examples/todomvc
   - docker-compose build
   - docker-compose up -d
 script:
