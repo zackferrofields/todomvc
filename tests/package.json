@@ -9,8 +9,7 @@
     "node": ">=6.0.0"
   },
   "scripts": {
-    "test": "npm run test:nightwatch",
-    "test:nightwatch": "nightwatch",
-    "test:cucumberjs": "cucumberjs"
+    "test": "npm run test:features",
+    "test:features": "nightwatch"
   }
 }
